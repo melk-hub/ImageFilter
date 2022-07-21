@@ -1,12 +1,11 @@
-import home from "./images/home.png"
-import Search from "./components/search";
+import SearchImageApp from "./components/searchImageApp";
 import './css/index.css';
 
 function App() {
 
-  return (<div>
-      <Search />
-    </div>
+  return (<>
+      <SearchImageApp />
+    </>
   );
 }
 

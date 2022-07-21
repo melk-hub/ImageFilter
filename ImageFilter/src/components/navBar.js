@@ -21,13 +21,13 @@ function NavBar(props) {
         window.scrollTo(0, 0);
     }, [category, searchFilter]);
 
-    return (<div>
+    return (<>
         <div className="p-3 bg-amber-500 text-black text-2xl flex justify-between">
             <p>Image Filter</p>
             <Categories changeCategories={handleSetCategories} />
             </div>
             <SearchBar changeFilter={handleSetFilter} />
-    </div>
+    </>
     );
 }
 
