@@ -13,12 +13,13 @@ function App() {
   const [page, setPage] = useState(1);
   const [searchFilter, setSearchFilter] = useState("");
   const [category, setCategory] = useState("");
+  var nbPerPage = 50;
 
   useEffect(() => {
       const APIkey = process.env.REACT_APP_API_ACCESS_KEY;
       const getData = async () => {
           const data = await axios.get(
-              `https://pixabay.com/api/?key=${APIkey}&per_page=50&page=${page}&q=${searchFilter}&category=${category}`
+              `https://pixabay.com/api/?key=${APIkey}&per_page=${nbPerPage}&page=${page}&q=${searchFilter}&category=${category}`
           );
       setData(data);
       };
