@@ -1,25 +1,29 @@
-import { useState } from "react";
+import React from "react";
 
-const SearchBar = (props) => {
-    const [searchFilter, setSearchFilter] = useState("");
+class SearchBar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchFilter: "",
+        }
+    }
 
-    const handleChange = event => {
-        setSearchFilter(event.target.value);
-    };
+    handleChange(e) {
+        this.setState({
+            searchFilter: e.target.value
+        }, () => {this.props.changeFilter(this.state.searchFilter); window.scrollTo(0, 0);});
+    }
 
-    const handleClick = e => {
-        e.preventDefault();
-        props.changeFilter(searchFilter);
-        window.scrollTo(0, 0);
-    };
-
-    return <div className="sticky top-0">
-        <form className="pt-3 m-10 my-5 flex flex-col items-center">
-            <input type="text" className="p-2.5 h-15 text-black rounded-md text-4xl" placeholder="Search" value={searchFilter} onChange={handleChange}>
-            </input>
-            <button className="p-2.5 w-1/5 h-15 px-5 m-4 text-indigo-100 text-3xl transition-colors duration-150 bg-sky-500 rounded-lg focus:shadow-outline hover:bg-sky-600" onClick={handleClick}>Search</button>
-        </form>
-    </div>
+    render() { 
+        return(
+            <div className="sticky top-0">
+                <form className="pt-3 m-10 my-5 flex flex-col items-center">
+                    <input type="text" className="p-2.5 h-15 text-black rounded-md text-4xl" placeholder="Search" onChange={this.handleChange.bind(this)}>
+                    </input>
+                </form>
+            </div>
+        );
+    }
 }
 
 export default SearchBar;
