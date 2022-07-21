@@ -1,4 +1,5 @@
 import React from "react";
+import debounce from 'lodash.debounce';
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -11,13 +12,13 @@ class SearchBar extends React.Component {
     handleChange(e) {
         this.setState({
             searchFilter: e.target.value
-        }, () => {this.props.changeFilter(this.state.searchFilter); window.scrollTo(0, 0);});
+        }, debounce(() => {this.props.changeFilter(this.state.searchFilter); window.scrollTo(0, 0);}, 500));
     }
 
     render() { 
         return(
-            <div className="sticky top-0">
-                <form className="pt-3 m-10 my-5 flex flex-col items-center">
+            <div>
+                <form className="py-3 m-5 my-2 flex flex-col items-center">
                     <input type="text" className="p-2.5 h-15 text-black rounded-md text-4xl" placeholder="Search" onChange={this.handleChange.bind(this)}>
                     </input>
                 </form>
